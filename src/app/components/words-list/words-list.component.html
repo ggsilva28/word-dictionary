@@ -1,0 +1,19 @@
+<div class="words-container" [scrollWindow]="false" infinite-scroll (scrolled)="loadNewPage($event)">
+
+    <div class="word-item" *ngFor="let word of words">
+        {{word}}
+    </div>
+
+    <div class="loading" *ngIf="loading && words.length === 0">
+        <img src="assets/gif/book_animation.gif" alt="">
+    </div>
+
+    <div class="loading" *ngIf="loading && words.length > 0">
+        <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+
+    <div class="error" *ngIf="!loading && words.length === 0">
+        Não foi possível buscar as palavras, tente novamente mais tarde.
+    </div>
+
+</div>

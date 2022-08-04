@@ -1,0 +1,39 @@
+.words-container {
+  width: 100%;
+  height: 600px;
+  margin-top: 15px;
+  overflow-y: scroll;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  .word-item {
+    flex: 1 0 25%;
+    padding: 5px;
+    border-right: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+
+    &.selected {
+      background-color: #f6f6f6;
+      color: var(--color-primary);
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #f6f6f6;
+    }
+  }
+}
+
+.loading {
+  width: 100%;
+  padding: 15px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  grid-column: 1/5;
+}
