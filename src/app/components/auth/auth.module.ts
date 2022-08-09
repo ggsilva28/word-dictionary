@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AuthComponent } from './auth.component';
 
@@ -12,6 +13,7 @@ import { AuthComponent } from './auth.component';
   imports: [
     CommonModule,
     RouterModule,
+    MatIconModule,
     MatButtonModule
   ]
 })

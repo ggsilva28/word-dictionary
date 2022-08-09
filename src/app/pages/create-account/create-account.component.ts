@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Services
+import { ToastrService } from 'ngx-toastr';
 import { AuthApiService } from 'src/app/api/auth-api.service';
 
 @Component({
@@ -13,13 +14,15 @@ import { AuthApiService } from 'src/app/api/auth-api.service';
 
 export class CreateAccountComponent implements OnInit {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public loading: boolean = false;
+  public hide = true;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authApi: AuthApiService,
     private router: Router,
+    private toastr: ToastrService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -39,14 +42,14 @@ export class CreateAccountComponent implements OnInit {
 
       if (response.isOk) {
         this.authApi.save(response.data.user, response.data.token);
-        // this.toastr.success('Conta criada. Seja bem-vindo!');
+        this.toastr.success('Conta criada. Seja bem-vindo!');
         this.router.navigate(['/home']);
       } else {
-        // this.toastr.error(this.authService.messages(response.message));
+        this.toastr.error(this.authApi.messages(response.message));
       }
 
     } else {
-      // this.toastr.error('Preencha todos os campos corretamente');
+      this.toastr.error('Preencha todos os campos corretamente');
     }
 
   }

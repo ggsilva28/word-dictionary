@@ -1,13 +1,29 @@
-button {
-  width: 125px;
-}
+.create-account-container {
+  width: 100%;
+  height: 100%;
 
-img {
-  width: 90px;
-  position: absolute;
-  bottom: 5vh;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-a {
-  margin-right: 15px;
+  .create-account-form {
+    position: relative;
+    width: 350px;
+    max-width: 80vw;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .mat-progress-bar{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+  }
 }

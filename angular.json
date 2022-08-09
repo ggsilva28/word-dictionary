@@ -84,5 +84,7 @@
       }
     }
   },
-  "defaultProject": "words-dictionary"
+  "cli": {
+    "analytics": "03ffe615-0d22-471a-9e91-c11d97960e9e"
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Services
@@ -13,12 +13,12 @@ import { AuthApiService } from 'src/app/api/auth-api.service';
 })
 export class LoginComponent implements OnInit {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public loading: boolean = false;
   public hide = true;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authApi: AuthApiService,
     private router: Router,
     private toastr: ToastrService
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       const response = await this.authApi.login(this.form.value.email, this.form.value.password)
       this.loading = false;
+      console.log(response);
 
       if (response.isOk) {
         this.authApi.save(response.data.user, response.data.token);

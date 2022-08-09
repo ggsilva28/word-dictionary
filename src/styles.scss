@@ -1,5 +1,6 @@
 @import "~swiper/css";
 @import "~swiper/css/pagination";
+@import '~ngx-toastr/toastr';
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -46,14 +47,14 @@ form {
   cursor: pointer;
 }
 
-// .toast-container.toast-top-center .ngx-toastr,
-// .toast-container.toast-bottom-center .ngx-toastr {
-//   box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
-//   min-width: 38vw;
-//   border-radius: 10px;
-//   padding: 25px 25px 25px 55px;
-// }
+.toast-container.toast-top-center .ngx-toastr,
+.toast-container.toast-bottom-center .ngx-toastr {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  min-width: 38vw;
+  border-radius: 10px;
+  padding: 25px 25px 25px 55px;
+}
 
-// .toast-container.toast-bottom-center {
-//   bottom: 15px;
-// }
+.toast-container.toast-bottom-center {
+  bottom: 15px;
+}

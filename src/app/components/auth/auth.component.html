@@ -1,12 +1,15 @@
 <div class="auth-container">
 
-    <div class="no-auth" *ngIf="!authApi.isLogged()" >
+    <div class="no-auth" *ngIf="!authApi.isLogged()">
         <a mat-stroked-button color="primary" routerLink="/login">Sign in</a>
         <a mat-flat-button color="primary" routerLink="/create-account">Create Account</a>
     </div>
 
     <div class="user-auth" *ngIf="authApi.isLogged()">
-        <button mat-flat-button (click)="authApi.logout()" > Sair </button>
+        <span class="name"> Hello {{user?.name}}</span>
+        <button mat-icon-button (click)="authApi.logout()" color="warn">
+            <mat-icon>logout</mat-icon>
+        </button>
     </div>
 
 </div>

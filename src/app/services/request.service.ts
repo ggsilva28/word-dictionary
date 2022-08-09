@@ -99,10 +99,11 @@ export class RequestService {
 
     } catch (e: any) {
 
+      console.log(e)
       return {
         isOk: false,
         code: e.code || 500,
-        message: e.error || e.message || 'Ocorreu um erro inesperado',
+        message: e.error.error || e.message || 'Ocorreu um erro inesperado',
       }
     }
   }

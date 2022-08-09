@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 //Services
-import { AuthApiService } from 'src/app/api/auth-api.service';
+import { AuthApiService } from '../../api/auth-api.service';
+
+//Interfaces
+import { IUser } from './../../interfaces/user';
 
 @Component({
   selector: 'app-auth',
@@ -11,12 +14,15 @@ import { AuthApiService } from 'src/app/api/auth-api.service';
 })
 export class AuthComponent implements OnInit {
 
+  public user?: IUser;
+
   constructor(
     public authApi: AuthApiService,
     public router: Router
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.user = await this.authApi.getUser();
   }
 
 }

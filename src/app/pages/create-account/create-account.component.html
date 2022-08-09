@@ -1,0 +1,30 @@
+<div class="create-account-container">
+
+    <div class="create-account-form">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+        <h1>Create your account</h1>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text" autocomplete="new-password">
+            </mat-form-field>
+ 
+            <mat-form-field appearance="fill">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="email" type="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
+                <mat-icon class="cursor-pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" type="submit" [disabled]="loading"> Create </button>
+        </form>
+    </div>
+
+</div>F
