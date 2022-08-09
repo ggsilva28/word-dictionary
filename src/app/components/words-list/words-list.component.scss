@@ -8,6 +8,7 @@
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 31px;
 
   .word-item {
     flex: 1 0 25%;
@@ -15,6 +16,9 @@
     padding: 5px;
     border-right: 1px solid #d1d1d1;
     border-bottom: 1px solid #d1d1d1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &.selected {
       background-color: #f6f6f6;
@@ -30,4 +34,5 @@
 
 .loading {
   grid-column: 1/5;
+  grid-row: 5/10;
 }

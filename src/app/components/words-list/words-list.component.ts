@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 //API
 import { WordsApiService } from '../../api/words-api.service';
@@ -31,6 +32,8 @@ export class WordsListComponent implements OnInit {
   constructor(
     public wordsApi: WordsApiService,
     public event: EventService,
+    public route: ActivatedRoute,
+    public router: Router,
   ) {
     this.event.subscribe('word-detail:prev', () => {
       const word = this.words[this.selectedWord.index - 1];
@@ -52,7 +55,7 @@ export class WordsListComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log('change')
+    this.selectedWord.word = this.route.snapshot.paramMap.get('word') || '';
     this.words = [];
     this.getWords();
   }
@@ -85,8 +88,13 @@ export class WordsListComponent implements OnInit {
 
       if (this.page === 1) {
         this.words = response.data.results;
-        this.selectedWord = { word: this.words[0], index: 0 };
-        this.showDetails(this.words[0], 0);
+        if (!this.selectedWord.word) {
+          this.selectedWord = { word: this.words[0], index: 0 };
+        } else {
+          this.selectedWord.index = this.words.indexOf(this.selectedWord.word);
+        }
+
+        this.showDetails(this.selectedWord.word, this.selectedWord.index);
       } else {
         this.words = this.words.concat(response.data.results);
       }
@@ -104,6 +112,8 @@ export class WordsListComponent implements OnInit {
       index: index
     }
 
+    //Update URL
+    this.router.navigate([`/home/${word}`]);
     this.event.publish('word-detail:show', word);
   }
 }
