@@ -82,8 +82,6 @@ export class WordsListComponent implements OnInit {
     const response = await this.getData();
     this.loading = false;
 
-    console.log(response)
-
     if (response.isOk) {
 
       if (this.page === 1) {
@@ -113,7 +111,7 @@ export class WordsListComponent implements OnInit {
     }
 
     //Update URL
-    this.router.navigate([`/home/${word}`]);
     this.event.publish('word-detail:show', word);
+    this.router.navigate([`/home/${word}`]);
   }
 }

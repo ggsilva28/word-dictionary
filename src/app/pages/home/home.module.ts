@@ -6,6 +6,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { WordsListModule } from 'src/app/components/words-list/words-list.module';
 import { WordDetailModule } from 'src/app/components/word-detail/word-detail.module';
+import { AuthModule } from 'src/app/components/auth/auth.module';
 
 import { HomeComponentRoutingModule } from './home-routing.module';
 
@@ -18,6 +19,7 @@ import { HomeComponent } from './home.component';
         MatButtonToggleModule,
         WordsListModule,
         WordDetailModule,
+        AuthModule,
         HomeComponentRoutingModule
     ],
     declarations: [HomeComponent]

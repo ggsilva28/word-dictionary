@@ -1,36 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 //Services
 import { RequestService } from '../services/request.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
-export interface IUser {
-  id?: number;
-  name: string;
-  email: string;
-  password: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+//Interfaces
+import { IUser } from '../interfaces/user';
+
+//Utils
+import { keys } from '../utils/keys.enum';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthApiService {
 
   constructor(
     private request: RequestService,
     private localStorage: LocalStorageService,
-    private router: Router,
   ) { }
 
   messages(key: string) {
     const messagesList: any = {
-      'user.not_found': 'Usuário não encontrado',
-      'user.invalid_password': 'Senha inválida',
-      'user.created': 'Usuário criado com sucesso',
-      'user.not_created': 'Não foi possível criar o usuário',
+      'user.not_found': 'User not found!',
+      'user.invalid_password': 'Invalid password!',
+      'user.created': 'User created!',
+      'user.not_created': 'User not created!',
     }
 
     return messagesList[key];
@@ -45,24 +41,24 @@ export class AuthService {
   }
 
   save(user: IUser, token: string) {
-    this.localStorage.set('user', user);
-    this.localStorage.set('token', token);
+    this.localStorage.set(keys.USER, user);
+    this.localStorage.set(keys.TOKEN, token);
 
     return true;
   }
 
   isLogged() {
-    return this.localStorage.get('token') !== null;
+    return this.localStorage.get(keys.TOKEN) !== null;
   }
 
   logout() {
-    this.localStorage.remove('user');
-    this.localStorage.remove('token');
+    this.localStorage.remove(keys.USER);
+    this.localStorage.remove(keys.TOKEN);
 
     return true;
   }
 
   getUser(): IUser {
-    return this.localStorage.get('user');
+    return this.localStorage.get(keys.USER);
   }
 }

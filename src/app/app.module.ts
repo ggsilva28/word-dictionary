@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SwiperModule } from 'swiper/angular';
@@ -20,6 +21,9 @@ import { SwiperModule } from 'swiper/angular';
     HttpClientModule,
     InfiniteScrollModule,
     SwiperModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

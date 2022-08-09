@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "theming"
+    ],
+    "cSpell.ignoreWords": [
+        "toastr"
     ]
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Services
-import { AuthService } from 'src/app/api/auth.service';
+import { AuthApiService } from 'src/app/api/auth-api.service';
 
 @Component({
   selector: 'app-create-account',
@@ -18,7 +18,7 @@ export class CreateAccountComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private authApi: AuthApiService,
     private router: Router,
   ) {
     this.form = this.fb.group({
@@ -34,11 +34,11 @@ export class CreateAccountComponent implements OnInit {
   async submit() {
     if (this.form.valid) {
       this.loading = true;
-      const response = await this.authService.createAccount(this.form.value)
+      const response = await this.authApi.createAccount(this.form.value)
       this.loading = false;
 
       if (response.isOk) {
-        this.authService.save(response.data.user, response.data.token);
+        this.authApi.save(response.data.user, response.data.token);
         // this.toastr.success('Conta criada. Seja bem-vindo!');
         this.router.navigate(['/home']);
       } else {

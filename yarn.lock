@@ -121,10 +121,10 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular/animations@~13.3.0":
-  version "13.3.11"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.3.11.tgz#13a7afa3d7d7076874f6ac62da5158ec4ae009f0"
-  integrity sha512-KE/3RuvixHIk9YTSwaUsezsUm9Ig9Y8rZMpHOT/8bRtzPiJ5ld2GnDHjrJgyZn7TdoP4wz4YCta5eC4ycu+KCw==
+"@angular/animations@13.3.0":
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.3.0.tgz#aaa954dd7c359fad8a1313e6abe311f8733732b3"
+  integrity sha512-q7hkImhHCv0QdriR8HOFhsAW05QDmvapcHrBv3y862LUTR5e90/+81RYuwFuKX1lk/sa7LiHlHHWC7oCspzr2Q==
   dependencies:
     tslib "^2.3.0"
 
@@ -5562,6 +5562,13 @@ ngx-infinite-scroll@13.0.0:
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-13.0.0.tgz#f3fc937d113b4a6d33b3bc3d4e11029c7044bf16"
   integrity sha512-XE7SMSnLwX89cmayKOaCvBt7sYUxadlsUOz0sXSqEqBQAS890RCJhIdZoDf9MpmcwebxK2SRfUXdoXtbL5q7lA==
+  dependencies:
+    tslib "^2.3.0"
+
+ngx-toastr@15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-15.0.0.tgz#7d9d664a264b8b39d1bf762bb0a124bde5be8f01"
+  integrity sha512-dseyONSYcbm+8hQUCzzyP6CnHGa8WAOGJN7dzGqgBV4sHCDiv5eZ4x/3uo7Fov2OR0O5T47keP7ND3z7tufXeg==
   dependencies:
     tslib "^2.3.0"
 

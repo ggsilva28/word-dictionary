@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Services
-import { AuthService } from 'src/app/api/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthApiService } from 'src/app/api/auth-api.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,13 @@ export class LoginComponent implements OnInit {
 
   public form: FormGroup;
   public loading: boolean = false;
+  public hide = true;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private authApi: AuthApiService,
     private router: Router,
+    private toastr: ToastrService
   ) {
     this.form = this.fb.group({
       email: ['', Validators.required],
@@ -32,19 +35,19 @@ export class LoginComponent implements OnInit {
   async submit() {
     if (this.form.valid) {
       this.loading = true;
-      const response = await this.authService.login(this.form.value.email, this.form.value.password)
+      const response = await this.authApi.login(this.form.value.email, this.form.value.password)
       this.loading = false;
 
       if (response.isOk) {
-        this.authService.save(response.data.user, response.data.token);
-        // this.toastr.success('Bem-vindo!');
+        this.authApi.save(response.data.user, response.data.token);
+        this.toastr.success('Welcome!');
         this.router.navigate(['/home']);
       } else {
-        // this.toastr.error(this.authService.messages(response.message));
+        this.toastr.error(this.authApi.messages(response.message));
       }
 
     } else {
-      // this.toastr.error('Preencha todos os campos corretamente');
+      this.toastr.error('Fill all fields!');
     }
 
   }
