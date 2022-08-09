@@ -1,40 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subscription, filter, share } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventService {
+  private channels: { [key: string]: Subject<any>; } = {};
 
-  public observable: Observable<any>
-  public observer!: Observer<any>
+  subscribe(topic: string, observer: (_: any) => void): Subscription {
+    if (!this.channels[topic]) {
+      this.channels[topic] = new Subject<any>();
+    }
 
-  constructor(
-  ) {
-    this.observable = Observable.create((observer: Observer<any>) => {
-      this.observer = observer
-    }).pipe(share());
+    return this.channels[topic].subscribe(observer);
   }
 
-  subscribe(eventName: string, callback: any) {
-    const subscriber: Subscription = this.observable.pipe(
-      filter((event: any) => {
-        return event.name === eventName
-      }
-      )
-    ).subscribe(callback);
+  publish(topic: string, data?: any): void {
+    const subject = this.channels[topic];
+    if (!subject) {
+      return;
+    }
 
-    return subscriber;
+    subject.next(data);
   }
 
-  publish(eventName: string, data: any) {
-    this.observer.next({
-      name: eventName,
-      data: data
-    });
-  }
+  destroy(topic: string): void {
+    const subject = this.channels[topic];
+    if (!subject) {
+      return;
+    }
 
-  unsubscribe(subscriber: Subscription) {
-    subscriber.unsubscribe();
+    subject.complete();
+    delete this.channels[topic];
   }
 }

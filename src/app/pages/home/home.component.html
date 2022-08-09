@@ -5,16 +5,16 @@
     </header>
 
     <div class="details-container">
-        1
+        <app-word-detail></app-word-detail>
     </div>
 
     <div class="words-container">
         <mat-button-toggle-group [value]="displayType" (change)="selectDisplay($event)">
             <mat-button-toggle value="all">Words List</mat-button-toggle>
             <mat-button-toggle value="favorites">Favorites</mat-button-toggle>
+            <mat-button-toggle value="history">History</mat-button-toggle>
         </mat-button-toggle-group>
 
-        <app-words-list *ngIf="displayType === 'all'"></app-words-list>
-        <app-favorites *ngIf="displayType === 'favorites'"></app-favorites>
+        <app-words-list [getFrom]="displayType"></app-words-list>
     </div>
 </div>

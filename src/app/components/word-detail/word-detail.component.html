@@ -1,1 +1,51 @@
-<p>word-detail works!</p>
+<div class="word-container">
+
+    <div class="data" *ngIf="wordData && !loading">
+
+        <swiper [pagination]="true" class="mySwiper">
+            <ng-template swiperSlide *ngFor="let i of getPhonetics()">
+
+                <div class="slider">
+
+                    <div class="word">
+                        <p>{{wordData.word}}</p>
+                        <p>{{i?.text}}</p>
+                    </div>
+
+                    <audio controls *ngIf="i?.audio">
+                        <source [src]="i?.audio" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+            </ng-template>
+        </swiper>
+
+        <div class="word-only" *ngIf="wordData?.phonetics?.length === 0">
+            <p>{{wordData.word}}</p>
+        </div>
+
+        <div class="meanings">
+            <p class="title">
+                Meanings
+            </p>
+            <div class="mean" *ngFor="let mean of wordData?.meanings ">
+                {{mean?.partOfSpeech}} - {{getDefinition(mean?.definitions)}}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="loading" *ngIf="!wordData && loading">
+        <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+
+    <div class="loading" *ngIf="!wordData && !loading && error">
+        Could not find results for word "{{this.word}}"
+    </div>
+
+    <div class="navigate" *ngIf="!loading">
+        <button mat-stroked-button color="primary" (click)="prev()">Previous</button>
+        <button mat-stroked-button color="primary" (click)="next()">Next</button>
+    </div>
+</div>

@@ -7,12 +7,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { HistoryComponent } from './component/history/history.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,6 +19,7 @@ import { HistoryComponent } from './component/history/history.component';
     BrowserAnimationsModule,
     HttpClientModule,
     InfiniteScrollModule,
+    SwiperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

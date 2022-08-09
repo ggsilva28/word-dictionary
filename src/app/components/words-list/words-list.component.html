@@ -1,6 +1,6 @@
 <div class="words-container" [scrollWindow]="false" infinite-scroll (scrolled)="loadNewPage($event)">
 
-    <div class="word-item" *ngFor="let word of words">
+    <div class="word-item" [ngClass]="{selected: this.selectedWord.word === word}" *ngFor="let word of words; let i = index" (click)="showDetails(word, i)">
         {{word}}
     </div>
 
@@ -13,7 +13,7 @@
     </div>
 
     <div class="error" *ngIf="!loading && words.length === 0">
-        Não foi possível buscar as palavras, tente novamente mais tarde.
+        Could not get words, try again later.
     </div>
 
 </div>

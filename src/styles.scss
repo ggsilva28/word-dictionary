@@ -1,3 +1,6 @@
+@import "~swiper/css";
+@import "~swiper/css/pagination";
+
 /* You can add global styles to this file, and also import other style files */
 
 html,
@@ -7,4 +10,13 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.loading {
+  width: 100%;
+  padding: 15px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

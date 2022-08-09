@@ -5,7 +5,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { WordsListModule } from 'src/app/components/words-list/words-list.module';
-import { FavoritesModule } from 'src/app/components/favorites/favorites.module';
+import { WordDetailModule } from 'src/app/components/word-detail/word-detail.module';
 
 import { HomeComponentRoutingModule } from './home-routing.module';
 
@@ -17,7 +17,7 @@ import { HomeComponent } from './home.component';
         MatGridListModule,
         MatButtonToggleModule,
         WordsListModule,
-        FavoritesModule,
+        WordDetailModule,
         HomeComponentRoutingModule
     ],
     declarations: [HomeComponent]

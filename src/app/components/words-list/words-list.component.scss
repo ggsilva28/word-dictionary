@@ -11,6 +11,7 @@
 
   .word-item {
     flex: 1 0 25%;
+    height: 20px;
     padding: 5px;
     border-right: 1px solid #d1d1d1;
     border-bottom: 1px solid #d1d1d1;
@@ -28,12 +29,5 @@
 }
 
 .loading {
-  width: 100%;
-  padding: 15px 0px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   grid-column: 1/5;
 }

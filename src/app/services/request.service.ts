@@ -22,23 +22,23 @@ export class RequestService {
     private localStorage: LocalStorageService
   ) { }
 
-  get(url: string, params?: any, headers?: any) {
-    return this.request('get', url, params, headers);
+  get(url: string, params?: any, headers?: any, baseUrl?: string) {
+    return this.request('get', url, params, headers, baseUrl);
   }
 
-  post(url: string, params?: any, headers?: any) {
-    return this.request('post', url, params, headers);
+  post(url: string, params?: any, headers?: any, baseUrl?: string) {
+    return this.request('post', url, params, headers, baseUrl);
   }
 
-  put(url: string, params?: any, headers?: any) {
-    return this.request('put', url, params, headers);
+  put(url: string, params?: any, headers?: any, baseUrl?: string) {
+    return this.request('put', url, params, headers, baseUrl);
   }
 
-  delete(url: string, params?: any, headers?: any) {
-    return this.request('delete', url, params, headers);
+  delete(url: string, params?: any, headers?: any, baseUrl?: string) {
+    return this.request('delete', url, params, headers, baseUrl);
   }
 
-  private async request(method: string, url: string, params?: any, headers?: any): Promise<requestResponse> {
+  private async request(method: string, url: string, params?: any, headers?: any, baseUrl: string = environment.apiUrl): Promise<requestResponse> {
     const token = this.localStorage.get('token');
 
     const httpOptions = {
@@ -71,16 +71,16 @@ export class RequestService {
 
       switch (method) {
         case 'get':
-          response = await this.http.get<requestResponse>(environment.apiUrl + url, httpOptions).toPromise();
+          response = await this.http.get<requestResponse>(baseUrl + url, httpOptions).toPromise();
           break;
         case 'post':
-          response = await this.http.post<requestResponse>(environment.apiUrl + url, params, httpOptions).toPromise();
+          response = await this.http.post<requestResponse>(baseUrl + url, params, httpOptions).toPromise();
           break;
         case 'put':
-          response = await this.http.put<requestResponse>(environment.apiUrl + url, params, httpOptions).toPromise();
+          response = await this.http.put<requestResponse>(baseUrl + url, params, httpOptions).toPromise();
           break;
         case 'delete':
-          response = await this.http.delete<requestResponse>(environment.apiUrl + url, httpOptions).toPromise();
+          response = await this.http.delete<requestResponse>(baseUrl + url, httpOptions).toPromise();
           break;
       }
 
@@ -105,6 +105,5 @@ export class RequestService {
         message: e.error || e.message || 'Ocorreu um erro inesperado',
       }
     }
-
   }
 }
