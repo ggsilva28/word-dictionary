@@ -27,26 +27,30 @@ export class WordDetailComponent implements OnInit {
 
   constructor(
     public wordsApi: WordsApiService,
-    public event: EventService
+    public event: EventService,
   ) {
     this.event.subscribe('word-detail:show', (word: string) => {
       this.word = word;
       this.getWord();
     });
+
+    this.event.subscribe('word-detail:update', () => {
+      this.getWord();
+    })
   }
 
   ngOnInit(): void {
   }
 
-  async getWord() {
+  async getWord(): Promise<void> {
+    this.error = false;
     this.wordData = undefined;
     this.loading = true;
     const response = await this.wordsApi.getWord(this.word);
     this.loading = false;
-    
-    if (response.isOk) {
-      this.wordData = response[0];
-    } else {
+
+    this.wordData = response.data;
+    if (!response.isOk) {
       this.error = true;
     }
 
@@ -63,15 +67,15 @@ export class WordDetailComponent implements OnInit {
     })
   }
 
-  getDefinition(def: any) {
+  getDefinition(def: any): string {
     return def[0].definition;
   }
 
-  prev(){
+  prev(): void {
     this.event.publish('word-detail:prev');
   }
 
-  next(){
+  next(): void {
     this.event.publish('word-detail:next');
   }
 }

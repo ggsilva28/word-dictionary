@@ -1,6 +1,8 @@
 <div class="word-container">
 
-    <div class="data" *ngIf="wordData && !loading">
+    <app-favorite *ngIf="!loading" [word]="word" [fav]="wordData?.isFavorite || false" ></app-favorite>
+
+    <div class="data" *ngIf="wordData && !loading && !error">
 
         <swiper [pagination]="true" class="mySwiper">
             <ng-template swiperSlide *ngFor="let i of getPhonetics()">
@@ -40,8 +42,8 @@
         <mat-spinner [diameter]="30"></mat-spinner>
     </div>
 
-    <div class="loading" *ngIf="!wordData && !loading && error">
-        Could not find results for word "{{this.word}}"
+    <div class="error" *ngIf="!loading && error">
+        Could not find results for word <strong>"{{this.word}}"</strong>
     </div>
 
     <div class="navigate" *ngIf="!loading">

@@ -1,0 +1,11 @@
+<div class="favorite" *ngIf="authApi.isLogged()">
+    <button mat-mini-fab color="primary" *ngIf="!fav && !loadingFav" (click)="favorite()">
+        <mat-icon>star_outline</mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" *ngIf="fav && !loadingFav" (click)="unfavorite()">
+        <mat-icon>star</mat-icon>
+    </button>
+    <button mat-mini-fab color="white" *ngIf="loadingFav">
+        <mat-spinner [diameter]="25"></mat-spinner>
+    </button>
+</div>

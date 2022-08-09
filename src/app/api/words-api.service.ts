@@ -28,7 +28,7 @@ export class WordsApiService {
     if (wordAPI && wordAPI[word]) {
       return wordAPI[word];
     } else {
-      const response = await this.request.get(`/v2/entries/en/${word}`, {}, {}, 'https://api.dictionaryapi.dev/api');
+      const response = await this.request.get(`/words/detail/${word}`);
       wordAPI[word] = response;
       await this.localStorage.set(keys.WORD_API, wordAPI);
       return response;
@@ -40,6 +40,15 @@ export class WordsApiService {
     if (history.indexOf(word) === -1) {
       history.push(word);
       await this.localStorage.set(keys.HISTORY, history);
+    }
+  }
+
+  async updateOnWordAPIHistory(word: string, newData: any) {
+    const wordAPIHistory = await this.localStorage.get(keys.WORD_API) || [];
+    const current = wordAPIHistory[word];
+    if (current) {
+      wordAPIHistory[word] = { ...current, data: { ...current.data, ...newData } }
+      await this.localStorage.set(keys.WORD_API, wordAPIHistory);
     }
   }
 

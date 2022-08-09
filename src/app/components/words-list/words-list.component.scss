@@ -36,3 +36,9 @@
   grid-column: 1/5;
   grid-row: 5/10;
 }
+
+.error{
+  padding: 25px;
+  font-weight: bold;
+  color: var(--color-warn);
+}

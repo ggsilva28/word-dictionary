@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
+//Services
 import { LocalStorageService } from './local-storage.service';
+
+//Utils
+import { keys } from './../utils/keys.enum';
 
 interface requestResponse {
   isOk: boolean;
@@ -39,7 +43,7 @@ export class RequestService {
   }
 
   private async request(method: string, url: string, params?: any, headers?: any, baseUrl: string = environment.apiUrl): Promise<requestResponse> {
-    const token = this.localStorage.get('token');
+    const token = this.localStorage.get(keys.TOKEN);
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -99,11 +103,11 @@ export class RequestService {
 
     } catch (e: any) {
 
-      console.log(e)
       return {
         isOk: false,
         code: e.code || 500,
         message: e.error.error || e.message || 'Ocorreu um erro inesperado',
+        data: e.error.data || null
       }
     }
   }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 //API
 import { WordsApiService } from '../../api/words-api.service';
+import { UserFavoriteApiService } from './../../api/user-favorite-api.service';
 
 //Services
 import { EventService } from '../../services/event.service';
@@ -22,7 +23,7 @@ export class WordsListComponent implements OnInit {
   @Input() getFrom: string = '';
 
   public words: string[] = [];
-  public page = 1;
+  public page = 0;
   public loading: boolean = false;
   public selectedWord: ISelectedWord = {
     word: '',
@@ -31,6 +32,7 @@ export class WordsListComponent implements OnInit {
 
   constructor(
     public wordsApi: WordsApiService,
+    public userFavoriteApi: UserFavoriteApiService,
     public event: EventService,
     public route: ActivatedRoute,
     public router: Router,
@@ -48,9 +50,18 @@ export class WordsListComponent implements OnInit {
         this.showDetails(word, this.selectedWord.index + 1);
       }
     })
+
+    this.event.subscribe('word-list:fav-update', () => {
+      if (this.getFrom === 'favorites') {
+        this.getWords();
+      }
+    })
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
     this.getWords();
   }
 
@@ -66,7 +77,7 @@ export class WordsListComponent implements OnInit {
         return this.wordsApi.get(244, this.page);
         break;
       case 'favorites':
-        return [];
+        return this.userFavoriteApi.getUserFavorite(this.page, 244);
         break;
       case 'history':
         return this.wordsApi.getHistory();
@@ -84,8 +95,9 @@ export class WordsListComponent implements OnInit {
 
     if (response.isOk) {
 
-      if (this.page === 1) {
+      if (this.page === 0) {
         this.words = response.data.results;
+
         if (!this.selectedWord.word) {
           this.selectedWord = { word: this.words[0], index: 0 };
         } else {

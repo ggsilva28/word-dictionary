@@ -1,5 +1,6 @@
 .word-container {
   padding: 15px 25px;
+  position: relative;
 }
 
 .slider {
@@ -34,20 +35,19 @@
 }
 
 .meanings {
-
   .title {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 15px;
   }
 
-  .mean{
+  .mean {
     text-transform: capitalize;
     margin-bottom: 5px;
   }
 }
 
-.navigate{
+.navigate {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -55,7 +55,21 @@
   gap: 10px;
   margin-top: 35px;
 
-  button{
+  button {
     flex: 1;
   }
+}
+
+app-favorite {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  z-index: 5;
+}
+
+.error{
+  padding: 25px;
+  max-width: 60%;
+  margin: 0 auto;
+  text-align: center;
 }

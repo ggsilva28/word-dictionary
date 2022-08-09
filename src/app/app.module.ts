@@ -11,9 +11,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

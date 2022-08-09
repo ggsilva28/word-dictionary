@@ -4,6 +4,9 @@ import { SwiperModule } from 'swiper/angular';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+import { FavoriteModule } from '../favorite/favorite.module';
 
 import { WordDetailComponent } from './word-detail.component';
 
@@ -13,8 +16,10 @@ import { WordDetailComponent } from './word-detail.component';
   imports: [
     CommonModule,
     SwiperModule,
+    MatIconModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    FavoriteModule,
   ]
 })
 export class WordDetailModule { }
