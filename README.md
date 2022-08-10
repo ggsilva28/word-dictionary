@@ -18,7 +18,7 @@ The live project is on: https://word-dictionary-ggsilva28.vercel.app/
 **Install**
 
 ```bash
-  yarb
+  yarn
 ```
 **Run**
 
