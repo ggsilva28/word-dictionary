@@ -14,7 +14,7 @@ export interface IUserFavorite {
 export class UserFavoriteApiService {
 
   constructor(
-    private request: RequestService
+    public request: RequestService
   ) { }
 
   public getUserFavorite(offset: number = 0, limit: number = 30) {

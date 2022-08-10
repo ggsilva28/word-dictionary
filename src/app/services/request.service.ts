@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 //Services
 import { LocalStorageService } from './local-storage.service';
@@ -22,8 +22,8 @@ interface requestResponse {
 export class RequestService {
 
   constructor(
-    private http: HttpClient,
-    private localStorage: LocalStorageService
+    public http: HttpClient,
+    public localStorage: LocalStorageService
   ) { }
 
   get(url: string, params?: any, headers?: any, baseUrl?: string) {

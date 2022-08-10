@@ -13,8 +13,8 @@ import { keys } from '../utils/keys.enum';
 export class WordsApiService {
 
   constructor(
-    private request: RequestService,
-    private localStorage: LocalStorageService
+    public request: RequestService,
+    public localStorage: LocalStorageService
   ) { }
 
   get(limit: number, offset: number) {
@@ -53,7 +53,7 @@ export class WordsApiService {
   }
 
   async getHistory(): Promise<any> {
-    const history = this.localStorage.get(keys.HISTORY);
+    const history = await this.localStorage.get(keys.HISTORY);
 
     return {
       isOk: true,

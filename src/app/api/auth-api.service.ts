@@ -17,8 +17,8 @@ import { keys } from '../utils/keys.enum';
 export class AuthApiService {
 
   constructor(
-    private request: RequestService,
-    private localStorage: LocalStorageService,
+    public request: RequestService,
+    public localStorage: LocalStorageService,
   ) { }
 
   messages(key: string) {
