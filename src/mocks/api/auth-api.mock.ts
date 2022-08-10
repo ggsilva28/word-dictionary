@@ -54,4 +54,12 @@ export class AuthApiMock {
     logout() {
         return true;
     }
+
+    getUser() {
+        return {
+            id: 1,
+            name: 'Test',
+            email: ''
+        }
+    }
 }

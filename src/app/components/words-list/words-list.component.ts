@@ -1,6 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { NgZone } from '@angular/core';
 
 //API
 import { WordsApiService } from '../../api/words-api.service';
@@ -24,7 +25,7 @@ interface ISelectedWord {
 })
 export class WordsListComponent implements OnInit {
 
-  @Input() getFrom: string = '';
+  @Input() getFrom: string = 'all';
 
   @HostListener('window:resize', ['$event'])
   public isMobile = () => window.innerWidth < 998;
@@ -43,6 +44,7 @@ export class WordsListComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public dialog: MatDialog,
+    public zone: NgZone
   ) {
     this.event.subscribe('word-detail:prev', () => {
       const word = this.words[this.selectedWord.index - 1];
@@ -68,7 +70,7 @@ export class WordsListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this.getWords();
   }
 
@@ -78,7 +80,7 @@ export class WordsListComponent implements OnInit {
     this.getWords();
   }
 
-  getData() {
+  async getData() {
     switch (this.getFrom) {
       case 'all':
         return this.wordsApi.get(244, this.page);
@@ -131,7 +133,9 @@ export class WordsListComponent implements OnInit {
 
     //Update URL
     this.event.publish('word-detail:show', word);
-    this.router.navigate([`/home/${word}`]);
+    this.zone.run(() => {
+      this.router.navigate([`/home/${word}`]);
+    });
   }
 
   async openDetails(word: string, index: number) {

@@ -3,12 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 //API
 import { UserFavoriteApiService } from '../../api/user-favorite-api.service';
 import { AuthApiService } from '../../api/auth-api.service';
-import { WordsApiService } from 'src/app/api/words-api.service';
+import { WordsApiService } from '../../api/words-api.service';
 
 //Services
 import { EventService } from '../../services/event.service';
 import { ToastrService } from 'ngx-toastr';
-
 
 @Component({
   selector: 'app-favorite',
@@ -41,14 +40,9 @@ export class FavoriteComponent implements OnInit {
 
     if (response.isOk) {
       await this.wordsApi.updateOnWordAPIHistory(this.word, { isFavorite: true });
-
-      this.event.publish('word-list:fav-update');
-      this.event.publish('word-detail:update');
-      this.toastr.success('Word added to favorites');
-      return;
-    }
-
-    this.toastr.error('Error adding word to favorites');
+      this.success('Word added to favorites');
+    } else
+      this.toastr.error('Error adding word to favorites');
   }
 
   async unfavorite(): Promise<void> {
@@ -58,13 +52,14 @@ export class FavoriteComponent implements OnInit {
 
     if (response.isOk) {
       await this.wordsApi.updateOnWordAPIHistory(this.word, { isFavorite: false });
+      this.success('Word removed from favorites');
+    } else
+      this.toastr.error('Error removing word from favorites');
+  }
 
-      this.event.publish('word-list:fav-update');
-      this.event.publish('word-detail:update');
-      this.toastr.success('Word removed from favorites');
-      return;
-    }
-
-    this.toastr.error('Error removing word from favorites');
+  success(message: string) {
+    this.event.publish('word-list:fav-update');
+    this.event.publish('word-detail:update');
+    this.toastr.success(message);
   }
 }

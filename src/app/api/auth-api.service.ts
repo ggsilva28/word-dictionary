@@ -24,9 +24,6 @@ export class AuthApiService {
   messages(key: string) {
     const messagesList: any = {
       'user.not_found': 'User not found!',
-      'user.invalid_password': 'Invalid password!',
-      'user.created': 'User created!',
-      'user.not_created': 'User not created!',
     }
 
     return messagesList[key];

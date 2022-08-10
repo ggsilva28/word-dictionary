@@ -6,7 +6,12 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "paths": {
+      "swiper_angular": [
+        "node_modules/swiper/angular"
+      ]
+    }
   },
   "files": [
     "src/setup.jest.ts",

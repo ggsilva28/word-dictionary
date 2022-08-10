@@ -7,7 +7,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FavoriteComponent } from './favorite.component';
 
-
 @NgModule({
   declarations: [FavoriteComponent],
   exports: [FavoriteComponent],
