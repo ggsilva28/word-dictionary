@@ -81,6 +81,7 @@ export class WordsListComponent implements OnInit {
   }
 
   async getData() {
+    this.page = 0;
     switch (this.getFrom) {
       case 'all':
         return this.wordsApi.get(244, this.page);
