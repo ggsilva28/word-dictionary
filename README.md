@@ -1,27 +1,38 @@
-# WordsDictionary
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+# Word Dictionary
 
-## Development server
+See an list of words provided by the Free Dictionary API and also the details about the words as meaning, phonetics and others informations.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## About the stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project is builded using Angular on version 14. Uses Material as UI library and SCSS to customizations. All data is fetched by the [API build in Node](https://github.com/ggsilva28/word-dictionary-backend). The application is hosted on [Vercel](https://word-dictionary-ggsilva28.vercel.app/).
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Live project
 
-## Running unit tests
+The live project is on: https://word-dictionary-ggsilva28.vercel.app/
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Install and run
 
-## Running end-to-end tests
+**Install**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+  yarb
+```
+**Run**
 
-## Further help
+```bash
+  ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The application will run at: http://localhost:4200
+
+
+## 🚀 About me
+
+I'm a full stack developer looking to learn new technologies and experiment on diferent projects.
+
+See more about my skills and accomplishments 
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
