@@ -77,11 +77,11 @@ export class WordsListComponent implements OnInit {
   ngOnChanges() {
     this.selectedWord.word = this.route.snapshot.paramMap.get('word') || '';
     this.words = [];
+    this.page = 0;
     this.getWords();
   }
 
   async getData() {
-    this.page = 0;
     switch (this.getFrom) {
       case 'all':
         return this.wordsApi.get(244, this.page);
