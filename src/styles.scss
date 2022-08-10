@@ -1,6 +1,6 @@
 @import "~swiper/css";
 @import "~swiper/css/pagination";
-@import '~ngx-toastr/toastr';
+@import "~ngx-toastr/toastr";
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -57,4 +57,25 @@ form {
 
 .toast-container.toast-bottom-center {
   bottom: 15px;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper {
+  align-items: flex-end !important;
+
+  .cdk-overlay-pane {
+    max-width: unset !important;
+    width: 100%;
+  }
+}
+
+@media (min-width: 998px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 998px) {
+  .desktop-only {
+    display: none !important;
+  }
 }

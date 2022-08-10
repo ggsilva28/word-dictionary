@@ -1,11 +1,12 @@
 <div class="home-container">
 
     <header>
-        <div class="logo"> Words Dictionary </div>
+        <div class="logo desktop-only"> Words Dictionary </div>
+        <div class="logo mobile-only"> WD </div>
         <app-auth></app-auth>
     </header>
 
-    <div class="details-container">
+    <div class="details-container" *ngIf="!isMobile()">
         <app-word-detail></app-word-detail>
     </div>
 

@@ -1,6 +1,10 @@
 <div class="word-container">
 
-    <app-favorite *ngIf="!loading" [word]="word" [fav]="wordData?.isFavorite || false" ></app-favorite>
+    <div class="close-icon mobile-only" (click)="close()">
+        <mat-icon>close</mat-icon>
+    </div>
+
+    <app-favorite *ngIf="!loading" [word]="word" [fav]="wordData?.isFavorite || false"></app-favorite>
 
     <div class="data" *ngIf="wordData && !loading && !error">
 
@@ -32,7 +36,7 @@
                 Meanings
             </p>
             <div class="mean" *ngFor="let mean of wordData?.meanings ">
-                {{mean?.partOfSpeech}} - {{getDefinition(mean?.definitions)}}
+                <strong>{{mean?.partOfSpeech}}</strong> - {{getDefinition(mean?.definitions)}}
             </div>
         </div>
 

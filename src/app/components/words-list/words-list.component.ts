@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 //API
 import { WordsApiService } from '../../api/words-api.service';
@@ -7,6 +8,9 @@ import { UserFavoriteApiService } from './../../api/user-favorite-api.service';
 
 //Services
 import { EventService } from '../../services/event.service';
+
+//Components
+import { WordDetailComponent } from './../word-detail/word-detail.component';
 
 interface ISelectedWord {
   word: string,
@@ -22,6 +26,8 @@ export class WordsListComponent implements OnInit {
 
   @Input() getFrom: string = '';
 
+  @HostListener('window:resize', ['$event'])
+  public isMobile = () => window.innerWidth < 998;
   public words: string[] = [];
   public page = 0;
   public loading: boolean = false;
@@ -36,18 +42,19 @@ export class WordsListComponent implements OnInit {
     public event: EventService,
     public route: ActivatedRoute,
     public router: Router,
+    public dialog: MatDialog,
   ) {
     this.event.subscribe('word-detail:prev', () => {
       const word = this.words[this.selectedWord.index - 1];
       if (word) {
-        this.showDetails(word, this.selectedWord.index - 1);
+        this.updateDetails(word, this.selectedWord.index - 1);
       }
     })
 
     this.event.subscribe('word-detail:next', () => {
       const word = this.words[this.selectedWord.index + 1];
       if (word) {
-        this.showDetails(word, this.selectedWord.index + 1);
+        this.updateDetails(word, this.selectedWord.index + 1);
       }
     })
 
@@ -104,7 +111,7 @@ export class WordsListComponent implements OnInit {
           this.selectedWord.index = this.words.indexOf(this.selectedWord.word);
         }
 
-        this.showDetails(this.selectedWord.word, this.selectedWord.index);
+        this.updateDetails(this.selectedWord.word, this.selectedWord.index);
       } else {
         this.words = this.words.concat(response.data.results);
       }
@@ -116,7 +123,7 @@ export class WordsListComponent implements OnInit {
     this.getWords();
   }
 
-  showDetails(word: string, index: number) {
+  updateDetails(word: string, index: number) {
     this.selectedWord = {
       word: word,
       index: index
@@ -126,4 +133,13 @@ export class WordsListComponent implements OnInit {
     this.event.publish('word-detail:show', word);
     this.router.navigate([`/home/${word}`]);
   }
+
+  async openDetails(word: string, index: number) {
+
+    if (this.isMobile())
+      this.dialog.open(WordDetailComponent);
+
+    this.updateDetails(word, index);
+  }
+
 }

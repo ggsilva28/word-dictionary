@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  @HostListener('window:resize', ['$event'])
+  public isMobile = () => window.innerWidth < 998;
   public displayType: string = 'all';
 
   constructor() { }

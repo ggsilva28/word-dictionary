@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 //API
 import { WordsApiService } from '../../api/words-api.service';
@@ -16,8 +17,9 @@ SwiperCore.use([Pagination]);
 @Component({
   selector: 'app-word-detail',
   templateUrl: './word-detail.component.html',
-  styleUrls: ['./word-detail.component.scss']
+  styleUrls: ['./word-detail.component.scss'],
 })
+
 export class WordDetailComponent implements OnInit {
 
   public word: string = '';
@@ -28,9 +30,11 @@ export class WordDetailComponent implements OnInit {
   constructor(
     public wordsApi: WordsApiService,
     public event: EventService,
+    public dialogRef: MatDialogRef<WordDetailComponent>
   ) {
     this.event.subscribe('word-detail:show', (word: string) => {
       this.word = word;
+      console.log(word)
       this.getWord();
     });
 
@@ -77,5 +81,9 @@ export class WordDetailComponent implements OnInit {
 
   next(): void {
     this.event.publish('word-detail:next');
+  }
+
+  close(){
+    this.dialogRef.close();
   }
 }
